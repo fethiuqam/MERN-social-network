@@ -1,9 +1,11 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
+import User from '../models/user.js'
 
 /* GET users listing. */
-router.get('/', function (req, res) {
-    res.send('respond with a resource');
+router.get('/', async function (req, res) {
+    const users = await User.find();
+    res.status(200).json(users);
 });
 
-module.exports = router;
+export default router;
